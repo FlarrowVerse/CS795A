@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Number Guessing Game</title>
+
+        <style media="screen">
+            .btn-submit {
+                background-color: lightgreen;
+                color: white;
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h1>Number Guessing Game</h1>
+        <hr><br>
+
+        <label for="assignment-list">Guess a number from 1 to 10: </label>
+        <input type="number" id="guess">
+        <button type="submit" name="btn-check" onclick="check()" class="btn-submit">CHECK</button>
+
+        <script type="text/javascript">
+
+        var GENNUM = generateRandomNum();
+        var TRIES = 4;
+
+        function generateRandomNum() {
+            alert("New Random Number Generated!");
+            return Math.floor(Math.random() * 100) % 10 + 1;
+        }
+
+        function check() {
+            var userGuess = document.getElementById("guess").value;
+            if (userGuess != GENNUM) {
+                TRIES--;
+                alert("Wrong Guess!\nTries Left: " + TRIES + "\nDifference: "+((userGuess-GENNUM > 0)?"positive":"negative"));
+            } else {
+                alert("Congratulations!! You guessed correctly in " + (4-TRIES) + " tries.");
+                TRIES = 4;
+                GENNUM = generateRandomNum();
+            }
+
+            if (TRIES == 0) {
+                alert("You could not guess the number.\nThe number was " + GENNUM);
+                TRIES = 4;
+                GENNUM = generateRandomNum();
+            }
+        }
+
+        </script>
+
+    </body>
+</html>

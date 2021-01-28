@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Digital Clock</title>
+
+        <style media="screen">
+            #clock {
+                border: 3px solid lightgreen;
+                border-radius: 0.2em;
+                width: 15%;
+                padding-left: 35px;
+                font-size: 40px;
+                font-weight: bold;
+                font-style: italic;
+
+                background-color: green;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="digital-clock">
+            <h1>Current Time: </h1>
+            <div id="clock">
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+        function showTime() {
+            var now = new Date();
+
+            var clockDisplay = document.getElementById("clock");
+
+            clockDisplay.innerHTML = ("0" + now.getHours()).slice(-2) +":"+ ("0" + now.getMinutes()).slice(-2) +":"+ ("0" + now.getSeconds()).slice(-2);
+        }
+
+        document.onload = setInterval(showTime, 1);
+        </script>
+
+    </body>
+</html>

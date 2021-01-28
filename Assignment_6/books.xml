@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<books>
+
+    <book category="Horror">
+        <title>The Call of Cthulhu</title>
+        <author>Howard Phillips Lovecraft</author>
+        <lang>English</lang>
+        <published>
+            <name>Weird Tales</name>
+            <year>1982</year>
+        </published>
+    </book>
+    
+    <book category="Detective">
+        <title>Joi Baba Felunath</title>
+        <author>Satyajit Ray</author>
+        <lang>Bengali</lang>
+        <published>
+            <name>Ananda Publishers</name>
+            <year>1975</year>
+        </published>
+    </book>
+
+    <book category="Fantasy">
+        <title>The Lion, the Witch and the Wardrobe</title>
+        <author>Clive Staples Lewis</author>
+        <lang>English</lang>
+        <published>
+            <name>Geoffrey Bles</name>
+            <year>1950</year>
+        </published>
+    </book>
+
+</books>

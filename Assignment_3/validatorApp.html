@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+
+        <style type="text/css">
+            .btn {
+                background-color: lightgreen;
+                color: white;
+            }
+        </style>
+
+        <title>Email and Phone Number Validator App</title>
+    </head>
+    <body>
+
+        <h1>VALIDATOR WEB APP</h1>
+        <hr><br>
+
+        <input type="text" id="email-input" placeholder="Enter email id to validate...">
+        <button class="btn" onclick="validateEmail()">Validate</button>
+        <label id="email-res"></label>
+
+        <br><br>
+
+        <input type="text" id="phone-input" placeholder="Enter phone no. to validate...">
+        <button class="btn" onclick="validatePhone()">Validate</button>
+        <label id="phone-res"></label>
+
+
+        <script type="text/javascript">
+            function validMsg(elem, msg) {
+                elem.innerHTML = msg;
+                elem.style.color = "green";
+            }
+
+            function invalidMsg(elem, msg) {
+                elem.innerHTML = msg;
+                elem.style.color = "red";
+            }
+
+            function validatePhone() {
+                var phone = document.getElementById("phone-input").value;
+                if (!isNaN(phone) && phone.length >= 10 && phone.length <= 13) {
+                    validMsg(document.getElementById("phone-res"), "Valid Phone Number!");
+                } else {
+                    invalidMsg(document.getElementById("phone-res"), "Invalid Phone Number!");
+                }
+            }
+
+            function validateEmail() {
+                var email = document.getElementById("email-input").value;
+                var regex = /[a-z0-9]@[a-z0-9]/i;
+                if (regex.test(email) && 
+                    email.indexOf('.') !== -1 && email.indexOf('.') < email.length-1) {
+                    console.log(email.indexOf('.') + " " + email.length-1);
+                    validMsg(document.getElementById("email-res"), "Valid Email ID!");
+                } else {
+                    invalidMsg(document.getElementById("email-res"), "Invalid Email ID!");
+                }
+            }
+
+            
+        </script>
+
+    </body>
+</html>

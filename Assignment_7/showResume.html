@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            background-color: blue;
+        }
+        #header {
+            width: 100%;
+            height: 250px;
+            /* background-color: blue; */
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #head-name {
+            margin-top: 30px;
+            margin-left: 15px;
+        }
+
+        #address {
+            border: 2px solid black;
+            border-radius: 0.4em;                        
+
+            position: absolute;
+            top: 10px;
+            right: 400px;
+            padding: 0px 10px;
+        }
+
+        #contact {
+            border: 2px solid black;
+            border-radius: 0.4em;                        
+
+            position: absolute;
+            top: 10px;
+            right: 100px;
+            padding: 0px 10px;
+        }
+
+        #position {
+            margin-top: 100px;
+            margin-left: 15px;
+        }
+
+        #body {
+            position: relative;
+            top: 250px;
+            background-color: white;
+            padding: 20px;
+        }
+
+        ul {
+            list-style-type: square;
+        }
+    </style>
+
+    <title>My Resume Viewer</title>
+</head>
+<body>
+    <div id="resume">
+        <div id="header">
+            <div id="head-name"></div>
+            <div id="address">
+                <p id="line1"></p>
+                <p id="line2"></p>
+                <p id="line3"></p>
+                <p id="line4"></p>
+                <p id="line5"></p>
+                <p id="line6"></p>
+            </div>
+            <div id="contact">
+                <p id="phone">Phone: </p>
+                <p id="email">Email: </p>
+            </div>
+            <div id="position"></div>
+        </div>
+
+        <div id="body">
+            <div id="summary">
+                <h2>Summary</h2>
+                <hr>
+            </div>
+
+            <div id="skills">
+                <h2>Skill Highlights</h2>
+                <hr>
+            </div>
+
+            <div id="education">
+                <h2>Educational Qualifications</h2>
+                <hr>
+            </div>
+
+            <div id="language">
+                <h2>Languages</h2>
+                <hr>
+            </div>
+
+            <div id="certification">
+                <h2>Certifications</h2>
+                <hr>
+            </div>
+
+            <div id="project">
+                <h2>Projects</h2>
+                <hr>
+            </div>
+
+            <div id="employer">
+                <h2>Past Employers</h2>
+                <hr>
+            </div>
+
+            <div id="portfolio">
+                <h2>Profile Links</h2>
+                <hr>
+            </div>
+        </div>
+    </div>    
+
+    <script>
+        function loadXMLDocument() {
+            fetch('resume.xml')
+            .then(response => response.text())
+            .then(data => {                    
+                let parser = new DOMParser();
+                let xml = parser.parseFromString(data, "application/xml");              
+
+                showXMLData(xml);
+            });
+        }
+
+        function showXMLData(xml) {
+            console.log(xml.getElementsByTagName("address"));
+            showName(xml.getElementsByTagName("fullName"));            
+            showAddress(xml.getElementsByTagName("address"));
+            showContacts(xml.getElementsByTagName("contact"));            
+            showBody(xml);
+        }
+
+        function showName(xml) {
+            var nameHeader = document.createElement("h1");
+            var firstName = xml[0].children[0].firstChild.nodeValue;
+            var lastName = xml[0].children[1].firstChild.nodeValue;
+
+            nameHeader.innerHTML = firstName + " " + lastName;
+            document.getElementById("head-name").appendChild(nameHeader);
+        }
+
+        function showAddress(xml) {
+            document.getElementById("line1").innerText = xml[0].children[0].children[0].firstChild.nodeValue;
+
+            document.getElementById("line2").innerText = xml[0].children[0].children[1].firstChild.nodeValue + ", ";            
+            document.getElementById("line2").innerText += xml[0].children[1].children[0].firstChild.nodeValue + ", ";
+
+            document.getElementById("line3").innerText = xml[0].children[1].children[1].firstChild.nodeValue + ", ";            
+            document.getElementById("line4").innerText = xml[0].children[1].children[2].firstChild.nodeValue + ", ";
+            document.getElementById("line5").innerText = xml[0].children[2].firstChild.nodeValue + ", ";
+            document.getElementById("line5").innerText += xml[0].children[3].firstChild.nodeValue + ", ";
+            document.getElementById("line6").innerText = xml[0].children[4].firstChild.nodeValue + " - ";
+            document.getElementById("line6").innerText += xml[0].children[5].firstChild.nodeValue;
+        }
+
+        function showContacts(xml) {
+            document.getElementById("phone").innerText += " " + xml[0].children[0].firstChild.nodeValue;
+            document.getElementById("email").innerText += " " + xml[0].children[1].firstChild.nodeValue;
+        }
+
+        function showBody(xml) {
+            // addding summary
+            var summary = document.createElement("p");
+            summary.innerText = xml.getElementsByTagName("summary")[0].firstChild.nodeValue;
+            document.getElementById("summary").appendChild(summary);
+
+            // adding position desired in heading
+            document.getElementById("position").innerHTML = "Position Applying for: " 
+            + xml.getElementsByTagName("position")[0].firstChild.nodeValue;
+
+            // adding skills list
+            var skills = xml.getElementsByTagName("skill");
+            var skillList = document.createElement("ul");
+            for (var i = 0; i < skills.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = skills[i].firstChild.nodeValue;                
+                skillList.appendChild(li);
+            }
+            document.getElementById("skills").appendChild(skillList);
+
+            // adding educational qualifications
+            var edu = xml.getElementsByTagName("education");
+            var eduList = document.createElement("ol");
+            for (var i = 0; i < edu.length; i++) {
+                var li = document.createElement("li");
+                showEducation(li, edu[i]);
+                eduList.appendChild(li);
+            }
+            document.getElementById("education").appendChild(eduList);
+
+            // adding languages list
+            var langs = xml.getElementsByTagName("language");
+            var langList = document.createElement("ul");
+            for (var i = 0; i < langs.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = langs[i].firstChild.nodeValue;                
+                langList.appendChild(li);
+            }
+            document.getElementById("language").appendChild(langList);
+
+            // adding certification details
+            var certs = xml.getElementsByTagName("certification");
+            var certList = document.createElement("ol");
+            for (var i = 0; i < certs.length; i++) {
+                var li = document.createElement("li");
+                showCertification(li, certs[i]);
+                certList.appendChild(li);
+            }
+            document.getElementById("certification").appendChild(certList);
+
+            // adding projects
+            var projects = xml.getElementsByTagName("project");
+            var projectList = document.createElement("ol");
+            for (var i = 0; i < projects.length; i++) {
+                var li = document.createElement("li");
+                showProject(li, projects[i]);
+                projectList.appendChild(li);
+            }
+            document.getElementById("project").appendChild(projectList);
+
+            // adding employers list
+            var emps = xml.getElementsByTagName("employer");
+            var empList = document.createElement("ul");
+            for (var i = 0; i < emps.length; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = emps[i].firstChild.nodeValue;                
+                empList.appendChild(li);
+            }
+            document.getElementById("employer").appendChild(empList);
+
+            // adding profile links
+            var profiles = xml.getElementsByTagName("site");
+            var profileList = document.createElement("ol");
+            for (var i = 0; i < profiles.length; i++) {
+                var li = document.createElement("li");
+                showProfile(li, profiles[i]);
+                profileList.appendChild(li);
+            }
+            document.getElementById("portfolio").appendChild(profileList);
+        }
+
+        function showEducation(li, xml) {
+            var institute = xml.children[0].firstChild.nodeValue;
+            var std = xml.children[1].firstChild.nodeValue;
+            var year = xml.children[2].firstChild.nodeValue;
+
+            var p1 = document.createElement("p");
+            p1.innerText = "Institute Name: " + institute;
+            var p2 = document.createElement("p");
+            p2.innerText = "Course: " + std;
+            var p3 = document.createElement("p");
+            p3.innerText = "Passout: " + year;
+
+            li.appendChild(p1); li.appendChild(p2); li.appendChild(p3);
+        }
+
+        function showCertification(li, xml) {
+            var name = xml.children[0].firstChild.nodeValue;
+            var certLink = xml.children[1].firstChild.nodeValue;
+            var a = document.createElement("a");
+            a.innerText = name;
+            a.setAttribute("href", certLink); a.setAttribute("target", "_blank");
+            li.appendChild(a);
+        }
+
+        function showProject(li, xml) {
+            var pname = xml.children[0].firstChild.nodeValue;
+            var tech = xml.children[1].firstChild.nodeValue;
+            var duration = xml.children[2].firstChild.nodeValue;
+
+            var p1 = document.createElement("p");
+            p1.innerText = "Project Name: " + pname;
+            var p2 = document.createElement("p");
+            p2.innerText = "Technology Used: " + tech;
+            var p3 = document.createElement("p");
+            p3.innerText = "Duration: " + duration;
+
+            li.appendChild(p1); li.appendChild(p2); li.appendChild(p3);
+        }
+
+        function showProfile(li, xml) {
+            var name = xml.getAttribute("id");
+            var link = xml.firstChild.nodeValue;
+            var a = document.createElement("a");
+            a.innerText = name;
+            a.setAttribute("href", link); a.setAttribute("target", "_blank");
+            li.appendChild(a);
+        }
+
+        document.onload = loadXMLDocument();
+
+    </script>
+</body>
+</html>

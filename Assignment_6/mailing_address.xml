@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<address>
+    <building>
+        <name>Birajiny Nibas</name>
+        <number>55</number>
+    </building>
+
+    <locality>
+        <street>Vidyasagar Sarani</street>
+        <area>Natunpally, Silpara</area>
+        <landmark>Near Silpara Buddhist Monastery</landmark>
+    </locality>    
+
+    <po>Thakurpukur</po>
+
+    <state>West Bengal</state>
+
+    <city>Kolkata</city>
+
+    <pincode>700063</pincode>
+
+</address>

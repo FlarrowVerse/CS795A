@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <style>
+            table,th,td,tr {
+                border: solid 2px black;
+            }
+            td,th {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        </style>
+
+        <title>Airlines Info</title>
+    </head>
+    <body>
+
+        <h1>Airlines in India</h1>
+        <hr><br>
+
+        <table id="airlines">
+            <tr>
+                <th>Flight No.</th>
+                <th>Airline</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Time (GMT+05:30)</th>
+            </tr>
+        </table>
+
+        <script>
+            function loadXMLDocument() {
+                fetch('airline_info.xml')
+                .then(response => response.text())
+                .then(data => {                    
+                    let parser = new DOMParser();
+                    let xml = parser.parseFromString(data, "application/xml");
+                    showXMLData(xml);
+                });
+            }
+
+            function showXMLData(xml) {
+                var carriers = xml.getElementsByTagName("carrier");
+
+                for (var i = 0; i < carriers.length; i++) {
+                    var carrier = carriers[i];
+                    var flights = carrier.children;                   
+
+                    for (var f = 0; f < flights.length; f++) {
+                        var flight = flights[f];
+
+                        var tr = document.createElement("tr");
+
+                        var tdFlNo = document.createElement("td");
+                        tdFlNo.innerHTML = flight.children[2].firstChild.nodeValue;
+                        tr.appendChild(tdFlNo);
+
+                        var tdAirline = document.createElement("td");
+                        tdAirline.innerHTML = carrier.getAttribute("name");
+                        tr.appendChild(tdAirline);
+
+                        var tdSrc = document.createElement("td");
+                        tdSrc.innerHTML = flight.children[0].children[0].firstChild.nodeValue;
+                        tr.appendChild(tdSrc);
+
+                        var tdDest = document.createElement("td");
+                        tdDest.innerHTML = flight.children[1].firstChild.nodeValue;
+                        tr.appendChild(tdDest);
+
+                        var tdTime = document.createElement("td");
+                        tdTime.innerHTML = flight.children[0].children[1].firstChild.nodeValue;
+                        tr.appendChild(tdTime);
+                        
+                        document.getElementById("airlines").appendChild(tr);
+                    }
+                }
+
+            }
+
+            document.onload = loadXMLDocument();
+
+        </script>
+        
+    </body>
+</html>

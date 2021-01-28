@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style media="screen">
+        .form {
+            width: 50%;
+            border: 5px solid black;
+            border-radius: 0.4rem;
+        }
+
+        .prompt {
+            font-weight: bold;
+            padding-right: 5px;
+            padding-left: 15px;
+        }
+
+        .btn-submit {
+            align-items: center;
+            margin-left: 1%;            
+            margin-bottom: 5px;
+            background-color: lightgreen;
+            color: white;
+        }
+
+        .arr-element {
+            width: 80px;
+        }
+
+    </style>
+
+
+    <title>Quick Sort</title>
+</head>
+<body>
+
+    <h1>Quick Sort</h1><hr><br>
+
+    <label class="prompt">Enter number of elements: </label>
+    <input type="number" name="length" id="arr-length">
+    <button class="btn-submit" onclick="modifyArray()">RESET</button> 
+    <br>
+
+    <label for="input-arr" class="prompt">Input array: </label>
+    <div id="input-arr"></div>
+    <br>
+
+    <button class="btn-submit" onclick="sortArray()">SORT</button> 
+    <br>
+
+    <label for="sorted-arr" class="prompt">Sorted array: </label>
+    <div id="sorted-arr"></div>
+    
+
+    <script type="text/javascript">
+
+    var ARRLEN = 0; // array length
+    var INPUT_DIV = document.getElementById("input-arr"); // array input div element
+    var OUTPUT_DIV = document.getElementById("sorted-arr"); // array output div element
+
+    var INPUT_TABLE = null;
+    var OUTPUT_TABLE = null;
+
+    function drawTable(divElement, arrType) {        
+        var tableElement = document.createElement("table");
+
+        var row = document.createElement("tr"); // single row for the array
+
+        for (var i = 0; i < ARRLEN; i++) {
+            // creating each column and appending to the row
+            var element = document.createElement("td");            
+
+            var inputBox = document.createElement("input");
+            inputBox.setAttribute("type", "number");   
+            inputBox.setAttribute("class", "arr-element");
+            inputBox.setAttribute("id", arrType+"-"+i);
+
+            element.appendChild(inputBox);
+            row.appendChild(element);
+        }
+        
+        tableElement.appendChild(row);
+        divElement.appendChild(tableElement);
+        return tableElement;
+    }
+
+    function clearTables() {
+        console.log(INPUT_TABLE);
+        console.log(OUTPUT_TABLE);
+        if (INPUT_TABLE != null) {
+            INPUT_DIV.removeChild(INPUT_TABLE); // remove the table element
+        }
+        if (OUTPUT_TABLE != null) {
+            OUTPUT_DIV.removeChild(OUTPUT_TABLE); // remove the table element
+        }
+    }
+
+    function modifyArray() {
+        ARRLEN = document.getElementById("arr-length").value; // length of array
+        
+        clearTables();
+
+        INPUT_TABLE = drawTable(INPUT_DIV, "in");
+        OUTPUT_TABLE = drawTable(OUTPUT_DIV, "out");
+    }
+
+    function quickSort(origArray) {
+        if (origArray.length <= 1) { 
+            return origArray;
+        } else {
+
+            var left = [];
+            var right = [];
+            var newArray = [];
+            var pivot = origArray.pop();
+            var length = origArray.length;
+
+            for (var i = 0; i < length; i++) {
+                if (origArray[i] <= pivot) {
+                    left.push(origArray[i]);
+                } else {
+                    right.push(origArray[i]);
+                }
+            }
+
+            return newArray.concat(quickSort(left), pivot, quickSort(right));
+        }
+    }
+
+    function sortArray() {
+        var arr = [];
+
+        for (var i = 0; i < ARRLEN; i++) {
+            arr.push(+document.getElementById("in-"+i).value);
+        }
+
+        var sorted = quickSort(arr);
+        console.log(sorted);
+
+        for (var i = 0; i < ARRLEN; i++) {
+            document.getElementById("out-"+i).value = sorted[i];
+        }
+    }
+    </script>
+</body>
+</html>

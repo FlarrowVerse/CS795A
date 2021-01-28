@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<coffee_bean>
+    <bean type="1">
+        <name>Robusta</name>
+        <price>71.80</price>
+    </bean>
+
+    <bean type="2">
+        <name>Liberica</name>
+        <price>6.21</price>
+    </bean>
+
+    <bean type="3">
+        <name>Arabica</name>
+        <price>156.48</price>
+    </bean>
+</coffee_bean>

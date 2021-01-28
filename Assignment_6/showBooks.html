@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <style>
+            table,th,td,tr {
+                border: solid 2px black;
+            }
+            td,th {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        </style>
+
+        <title>My Books</title>
+    </head>
+    <body>
+
+        <h1>My Favourite Books</h1>
+        <hr><br>
+
+        <table id="books-list">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Publisher</th>
+                <th>Original Language</th>
+            </tr>
+        </table>
+
+        <script>
+            function loadXMLDocument() {
+                fetch('books.xml')
+                .then(response => response.text())
+                .then(data => {                    
+                    let parser = new DOMParser();
+                    let xml = parser.parseFromString(data, "application/xml");
+                    showXMLData(xml);
+                });
+            }
+
+            function showXMLData(xml) {
+                var books = xml.getElementsByTagName("book");                
+
+                for (var i = 0; i < books.length; i++) {
+                    var book = books[i];                   
+
+                    var tr = document.createElement("tr");
+
+                    var tdTitle = document.createElement("td");
+                    tdTitle.innerHTML = book.children[0].firstChild.nodeValue;
+                    tr.appendChild(tdTitle);
+
+                    var tdAuthor = document.createElement("td");
+                    tdAuthor.innerHTML = book.children[1].firstChild.nodeValue;
+                    tr.appendChild(tdAuthor);
+
+                    var tdGenre = document.createElement("td");
+                    tdGenre.innerHTML = book.getAttribute("category");
+                    tr.appendChild(tdGenre);
+
+                    var tdYear = document.createElement("td");
+                    tdYear.innerHTML = book.children[3].children[1].firstChild.nodeValue;
+                    tr.appendChild(tdYear);
+
+                    var tdPublisher = document.createElement("td");
+                    tdPublisher.innerHTML = book.children[3].children[0].firstChild.nodeValue;
+                    tr.appendChild(tdPublisher);
+
+                    var tdLanguage = document.createElement("td");
+                    tdLanguage.innerHTML = book.children[2].firstChild.nodeValue;
+                    tr.appendChild(tdLanguage);
+
+                    document.getElementById("books-list").appendChild(tr);
+                }
+
+            }
+
+            document.onload = loadXMLDocument();
+
+        </script>
+        
+    </body>
+</html>

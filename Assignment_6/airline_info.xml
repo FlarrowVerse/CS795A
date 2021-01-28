@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<airlines>
+    <carrier name="Indigo">
+
+        <flight>
+            <departure>
+                <city>Kolkata</city>
+                <time>16:05</time>
+            </departure>
+            <destination>Varanasi</destination>
+            <flightNo>6E 0355</flightNo>
+        </flight>
+
+        <flight>
+            <departure>
+                <city>Kolkata</city>
+                <time>16:45</time>
+            </departure>
+            <destination>Cochin</destination>
+            <flightNo>6E 0789</flightNo>
+        </flight>
+
+    </carrier>
+
+    <carrier name="Spicejet">
+
+        <flight>
+            <departure>
+                <city>Kolkata</city>
+                <time>15:52</time>
+            </departure>
+            <destination>Gwalior</destination>
+            <flightNo>SG 3565</flightNo>
+        </flight>
+
+        <flight>
+            <departure>
+                <city>Kolkata</city>
+                <time>17:45</time>
+            </departure>
+            <destination>Bagdogra</destination>
+            <flightNo>SG 0277</flightNo>
+        </flight>
+
+    </carrier>
+
+    <carrier name="Air India">
+        
+        <flight>
+            <departure>
+                <city>Kolkata</city>
+                <time>18:10</time>
+            </departure>
+            <destination>Hyderabad</destination>
+            <flightNo>AI 0529</flightNo>
+        </flight>
+        
+        <flight>
+            <departure>
+                <city>Kolkata</city>
+                <time>18:30</time>
+            </departure>
+            <destination>Delhi</destination>
+            <flightNo>AI 0535</flightNo>
+        </flight>
+
+    </carrier>
+    
+</airlines>

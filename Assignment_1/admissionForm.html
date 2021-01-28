@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Admission Form</title>
+
+        <style media="screen">
+            .form {
+                width: 50%;
+                border: 5px solid black;
+                border-radius: 0.4rem;
+            }
+
+            .prompt {
+                font-weight: bold;
+                padding-right: 5px;
+                padding-left: 15px;
+            }
+
+            #btn-submit {
+                align-items: center;
+                margin-left: 25%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                background-color: lightgreen;
+                color: white;
+            }
+
+            br {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <form class="form" id="admission-form">
+            <h1>Admission Form</h1>
+            <hr><br>
+
+            <label for="username" class="prompt">Enter your Name: </label>
+            <input type="text" name="name" id="username"><br>
+
+            <label for="username" class="prompt">Enter password: </label>
+            <input type="password" name="password" id="password"><br>
+
+            <label class="prompt">Select Gender: </label>
+            <input type="radio" name="gender-male" value="male">
+            <label for="gender-male">Male</label>
+
+            <input type="radio" name="gender-female" value="female">
+            <label for="gender-female">Female</label><br>
+
+            <label class="prompt">Enter your Educational Qualifications: </label>
+            <input type="checkbox" id="edu-10" value="10">
+            <label for="edu-10">10th Standard</label>
+            <input type="checkbox" id="edu-12" value="12">
+            <label for="edu-12">12th Standard</label>
+            <input type="checkbox" id="edu-dip" value="diploma">
+            <label for="edu-dip">Diploma</label>
+            <br>
+
+            <label for="stream" class="prompt">Select your preferred stream: </label>
+            <select class="listbox" name="stream">
+                <option value="cse">Computer Science and Engineering</option>
+                <option value="ece">Electronics and Communication Engineering</option>
+                <option value="ee">Electrical Engineering</option>
+                <option value="me">Mechanical Engineering</option>
+                <option value="ce">Civil Engineering</option>
+            </select>
+            <br>
+
+            <button type="submit" name="btn-submit" class="btn" id="btn-submit" onclick="validate()">SUBMIT</button>
+        </form>
+
+
+        <script type="text/javascript">
+
+        function validateName() {
+            var name = document.getElementById("username").value;
+            return name != "";
+        }
+
+        function validatePassword() {
+            var password = document.getElementById("password").value;
+            var name = document.getElementById("username").value;
+            return !(password.includes(name) || password.includes(name.toLowerCase()) || password.includes(name.toUpperCase()) || password == "");
+        }
+
+        function validateQualification() {
+            var qualifications = document.getElementById("edu-10").checked &&
+                (document.getElementById("edu-12").checked || document.getElementById("edu-dip").checked);
+            console.log(qualifications);
+            return qualifications;
+        }
+
+        function validate() {
+            if (!validateName()) {
+                alert("Name invalid!");
+            }
+
+            if (!validatePassword()) {
+                alert("Password invalid!");
+            }
+
+            if (!validateQualification()) {
+                alert("Qualifications invalid!");
+            }
+
+            if (validateName() && validatePassword() && validateQualification()) {
+                alert("Submitted Application successfully!");    
+            }
+        }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Mailing Address</title>
+    </head>
+    <body>
+
+        <h1>Mailing Address</h1>
+        <hr><br>
+
+        <label>Building Details: </label>
+        <input type="text" id="building-name" placeholder="Building Name...">
+        <input type="text" id="building-num" placeholder="Building Number...">
+        <br><br>
+
+        <label>Locality: </label>
+        <input type="text" id="street" placeholder="Street...">
+        <input type="text" id="area" placeholder="Area...">
+        <input type="text" id="landmark" placeholder="Landmark...">
+        <br><br>
+
+        <label>Post Office: </label>
+        <input type="text" id="po" placeholder="Post Office..."><br><br>
+
+        <label>State: </label>
+        <input type="text" id="state" placeholder="State..."><br><br>
+
+        <label>City: </label>
+        <input type="text" id="city" placeholder="City..."><br><br>
+
+        <label>Pincode: </label>
+        <input type="text" id="pincode" placeholder="Pincode...">
+
+        <script>
+            function loadXMLDocument() {
+                fetch('mailing_address.xml')
+                .then(response => response.text())
+                .then(data => {                    
+                    let parser = new DOMParser();
+                    let xml = parser.parseFromString(data, "application/xml");
+                    console.log(xml);
+
+                    showXMLData(xml);
+                });
+            }
+
+            function showXMLData(xml) {
+                var buildingName = document.getElementById("building-name");                
+                buildingName.value = xml.getElementsByTagName("name")[0].firstChild.nodeValue;
+
+                var buildingNum = document.getElementById("building-num");
+                buildingNum.value = xml.getElementsByTagName("number")[0].firstChild.nodeValue;
+
+                var street = document.getElementById("street");
+                street.value = xml.getElementsByTagName("street")[0].firstChild.nodeValue;
+
+                var area = document.getElementById("area");
+                area.value = xml.getElementsByTagName("area")[0].firstChild.nodeValue;
+
+                var landmark = document.getElementById("landmark");
+                landmark.value = xml.getElementsByTagName("landmark")[0].firstChild.nodeValue;
+
+                var postOffice = document.getElementById("po");
+                postOffice.value = xml.getElementsByTagName("po")[0].firstChild.nodeValue;
+
+                var state = document.getElementById("state");
+                state.value = xml.getElementsByTagName("state")[0].firstChild.nodeValue;
+
+                var city = document.getElementById("city");
+                city.value = xml.getElementsByTagName("city")[0].firstChild.nodeValue;
+
+                var pincode = document.getElementById("pincode");
+                pincode.value = xml.getElementsByTagName("pincode")[0].firstChild.nodeValue;
+                
+            }
+
+            document.onload = loadXMLDocument();
+
+        </script>
+        
+    </body>
+</html>

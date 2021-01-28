@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <style>
+            table,th,td,tr {
+                border: solid 2px black;
+            }
+            td,th {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        </style>
+
+        <title>Coffee Beans Info</title>
+    </head>
+    <body>
+
+        <h1>Coffee Beans in India</h1>
+        <hr><br>
+
+        <table id="coffee-beans">
+            <tr>
+                <th>Serial No.</th>
+                <th>Coffee Bean</th>
+                <th>Price(cents/lbs)</th>
+            </tr>
+        </table>
+
+        <script>
+            function loadXMLDocument() {
+                fetch('coffee_beans.xml')
+                .then(response => response.text())
+                .then(data => {                    
+                    let parser = new DOMParser();
+                    let xml = parser.parseFromString(data, "application/xml");
+                    showXMLData(xml);
+                });
+            }
+
+            function showXMLData(xml) {
+                var beans = xml.getElementsByTagName("bean");
+
+                for (var i = 0; i < beans.length; i++) {
+                    var bean = beans[i];                   
+
+                    var tr = document.createElement("tr");
+
+                    var tdSno = document.createElement("td");
+                    tdSno.innerHTML = bean.getAttribute("type");
+                    tr.appendChild(tdSno);
+
+                    var tdName = document.createElement("td");
+                    tdName.innerHTML = bean.children[0].firstChild.nodeValue;
+                    tr.appendChild(tdName);
+
+                    var tdPrice = document.createElement("td");
+                    tdPrice.innerHTML = bean.children[1].firstChild.nodeValue;
+                    tr.appendChild(tdPrice);                    
+
+                    document.getElementById("coffee-beans").appendChild(tr);
+                }
+
+            }
+
+            document.onload = loadXMLDocument();
+
+        </script>
+        
+    </body>
+</html>

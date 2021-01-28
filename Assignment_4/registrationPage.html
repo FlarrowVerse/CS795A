@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./registrationPage.css">
+
+        <style>
+            body {
+                background-color: #d2ff4d;
+            }
+
+            h1 {
+                color: blue;
+            }
+
+            hr {
+                color: blue;
+            }
+
+            form {
+                position: absolute;
+                top: 100px;
+                left: 250px;
+                font-size: 40px;
+
+                border-color: lightblue;
+                border-width: 10px;
+                border-style: solid;
+                border-radius: 10px;
+
+                padding: 20px;
+
+                background-color: #4db8ff;
+            }
+
+            label {
+                margin-top: 30px;
+                color: white;
+            }
+
+            input {
+                font-size: 40px;
+                margin-top: 30px;
+                border-radius: 10px;
+            }
+
+            .btn {
+                font-size: 50px;
+                border-radius: 10px;
+                margin-top: 30px;    
+                padding: 10px;
+            }
+
+            .btn-green {
+                color: white;
+                background-color: green;
+            }
+        </style>
+
+        <title>Resgistration Page</title>
+    </head>
+    <body>
+
+        <h1>REGSISTRATION PAGE FOR NEW USERS</h1>
+        <hr><br>
+        
+        <form>
+            <label>Enter your name: </label>
+            <input type="text" id="first-name" placeholder="First Name....">
+            <input type="text" id="last-name" placeholder="Last Name....">
+            <br>
+
+            <label for="email">Enter your email: </label>
+            <input type="email" id="email">
+            <br>
+
+            <label for="phone">Enter your phone: </label>
+            <input type="phone" id="phone" placeholder="+91 1234567890">
+            <br>
+
+            <label for="username">Enter your username: </label>
+            <input type="text" id="username">
+            <br>
+
+
+            <label for="password">Enter your password: </label>
+            <input type="password" id="password">
+            <br>
+
+            <label for="re-password">Confirm your password: </label>
+            <input type="password" id="re-password">
+            <br>
+
+            <button class="btn btn-green" onclick="checkUser()">Register</button>
+
+        </form>
+
+        <script>
+
+            function checkPassword() {
+                var passwd = document.getElementById("password").value;
+                var repasswd = document.getElementById("re-password").value;
+
+                return passwd == repasswd;
+            }
+
+            function validatePhone() {
+                var phone = document.getElementById("phone").value;
+                if (!isNaN(phone) && phone.length >= 10 && phone.length <= 13) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function validateEmail() {
+                var email = document.getElementById("email").value;
+                var regex = /[a-z0-9]@[a-z0-9]/i;
+                if (regex.test(email) && 
+                    email.indexOf('.') !== -1 && email.indexOf('.') < email.length-1) {
+                    
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function checkUser() {
+                if (checkPassword() && validateEmail() && validatePhone()) {
+                    alert("Registered successfully !!!");
+                } else {
+                    alert("Regsitration not successful !!!");
+                }
+            }
+        </script>
+    </body>
+</html>

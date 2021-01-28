@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<resume>
+    <fullName>
+        <fname>Archisman</fname>
+        <lname>Chakraborty</lname>
+    </fullName>
+    <contact>
+        <phone>+91 8017960534</phone>
+        <email>archisman1999@gmail.com</email>
+    </contact>
+    <address>
+        <building>
+            <name>Birajiny Nibas</name>
+            <number>55</number>
+        </building>
+        <locality>
+            <street>Vidyasagar Sarani</street>
+            <area>Natunpally, Silpara</area>
+            <landmark>Near Silpara Buddhist Monastery</landmark>
+        </locality>    
+        <po>Thakurpukur</po>
+        <state>West Bengal</state>
+        <city>Kolkata</city>
+        <pincode>700063</pincode>
+    </address>
+
+    <summary>
+        I am a student of 4th year, pursuing Bachelor of Technology in Computer Science and Engineering. 
+        I am well-versed in several programming languages like Java, C, Python,SQL. I have participated in back-end and 
+        front-end web development projects. I have a strong background in Data Structures and Algorithms.
+    </summary>
+
+    <skill id="skill-1">Object Oreinted programming</skill>
+    <skill id="skill-2">Data Structures and Algorithms</skill>
+    <skill id="skill-3">Procedure Oreinted programming</skill>
+    <skill id="skill-4">Functional programming</skill>
+    <skill id="skill-5">Back-end and Front-end Web development</skill>    
+    <skill id="skill-6">REST API creation</skill>
+    <skill id="skill-7">Rudimentary Machine Learning</skill>
+
+    <education id="edu-1">
+        <institute>Vivekananda Mission School</institute> 
+        <std>Class X</std> 
+        <year>2015</year>
+    </education>
+    <education id="edu-2">
+        <institute>Vivekananda Mission School</institute> 
+        <std>Class XII</std> 
+        <year>2017</year>
+    </education>
+    <education id="edu-3">
+        <institute>Techno Main Salt Lake, Kolkata</institute> 
+        <std>Bachelor of Technology: Computer Science and Engineering</std> 
+        <year>2021</year>
+    </education>
+
+    <language id="lang-1">English</language>
+    <language id="lang-2">Bengali</language>
+    <language id="lang-3">Hindi</language>
+    <language id="lang-4">HXXH</language>
+
+    <certification id="cert-1">
+        <name>Student Developer: Crio-Launch for Backend Development</name>
+        <cert>https://raw.githubusercontent.com/CrioDo/Crio-Launch-Feb-2020-archisman1999/gh-pages/static/media/Crio-Launch-Feb-2020-Certificate.png</cert>
+    </certification>
+    <certification id="cert-2">
+        <name>Spoken Tutorial C Programming</name>
+        <cert>https://drive.google.com/file/d/1m8pC9G58veC6GmiuQ7UYrmw8WcPIYS5k/view?usp=sharing</cert>
+    </certification>
+    <certification id="cert-3">
+        <name>NPTEL Computer Architecture</name>
+        <cert>https://drive.google.com/file/d/1S1cA3wiLRKRLNpC0-gVxpId_q1FnqQUq/view?usp=sharing</cert>
+    </certification>
+
+    <project id="proj-1">
+        <pname>A console based Quiz System</pname>
+        <tech>Java</tech>
+        <duration>3 days</duration>
+    </project>
+    <project id="proj-2">
+        <pname>Digital text to handwriting</pname>
+        <tech>Python</tech>
+        <duration>1 day</duration>
+    </project>
+    <project id="proj-3">
+        <pname>QBox Server</pname>
+        <tech>Linux vsftpd</tech>
+        <duration>30 hours(2 weeks)</duration>
+    </project>
+    <project id="proj-4">
+        <pname>QMoney Stock Analyzer</pname>
+        <tech>Java</tech>
+        <duration>60 hours(4 weeks)</duration>
+    </project>
+
+    <employer id="emp-1">Crio</employer>
+    <employer id="emp-2">Tata Consultancy Service</employer>
+
+    <position>Software Developement Engineer</position>
+
+    <portfolio>
+        <site id="Crio-Do">https://flarrowverse-portfolio-page.netlify.app/</site>
+        <site id="Github">https://github.com/FlarrowVerse</site>
+        <site id="Linkedin">https://www.linkedin.com/in/archisman-chakraborty-21b3a7147/</site>
+    </portfolio>
+
+</resume>
